@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://d11wle6mtihm0"]
+
+[ext_resource type="Script" uid="uid://k5uj7al7lch6" path="res://color_rect.gd" id="1_0fbet"]
+[ext_resource type="Shader" uid="uid://dvxe13evamkcg" path="res://control.gdshader" id="1_62e2m"]
+[ext_resource type="Texture2D" uid="uid://dpu01judrsgdp" path="res://misstep.png" id="2_62e2m"]
+[ext_resource type="Script" uid="uid://ca684ahifoo73" path="res://button.gd" id="4_ee4bf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qtu10"]
+shader = ExtResource("1_62e2m")
+shader_parameter/color1 = Color(0.1, 0, 0.2, 1)
+shader_parameter/color2 = Color(0, 0.2, 0.4, 1)
+shader_parameter/color3 = Color(0, 0.4, 0.3, 1)
+shader_parameter/speed = 1.0
+shader_parameter/wave_size = 2.0
+shader_parameter/mouse_position = Vector2(0.5, 0.5)
+shader_parameter/mouse_radius = 0.25
+shader_parameter/mouse_strength = 0.4
+
+[sub_resource type="Shader" id="Shader_ee4bf"]
+code = "shader_type canvas_item;
+
+uniform vec4 glow_color : source_color = vec4(0.0, 0.8, 1.0, 1.0);
+uniform float hover_intensity : hint_range(0.0, 1.0) = 0.0;
+
+void fragment() {
+    vec4 current_color = texture(TEXTURE, UV);
+    
+    // Create an outer pulse glow when hovered
+    float pulse = (sin(TIME * 5.0) * 0.5 + 0.5) * hover_intensity;
+    vec4 glow = glow_color * pulse * 0.4;
+    
+    // Mix the base button texture with the glow effect
+    COLOR = current_color + glow;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kbped"]
+shader = SubResource("Shader_ee4bf")
+shader_parameter/glow_color = Color(0, 0.8, 1, 1)
+shader_parameter/hover_intensity = 0.0
+
+[node name="Control" type="Control" unique_id=2006052024]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1972460355]
+material = SubResource("ShaderMaterial_qtu10")
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 1151.0
+offset_bottom = 647.0
+script = ExtResource("1_0fbet")
+
+[node name="Misstep" type="Sprite2D" parent="." unique_id=859423660]
+position = Vector2(562, 101.00001)
+scale = Vector2(8.514286, 9.166667)
+texture = ExtResource("2_62e2m")
+
+[node name="Button" type="Button" parent="." unique_id=586160743]
+material = SubResource("ShaderMaterial_kbped")
+layout_mode = 0
+offset_left = 362.0
+offset_top = 220.0
+offset_right = 808.0
+offset_bottom = 422.0
+text = "start"
+flat = true
+script = ExtResource("4_ee4bf")
