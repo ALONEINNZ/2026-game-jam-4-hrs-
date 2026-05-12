@@ -1,4 +1,4 @@
-extends TextureButton
+extends Button
 
 @export var hover_scale := Vector2(1.1, 1.1)
 @export var normal_scale := Vector2(1.0, 1.0)
@@ -11,21 +11,22 @@ var current_hover_intensity := 0.0
 var atlas_tex: AtlasTexture
 
 func _ready() -> void:
-	# Explicitly ensure pivot offset centers perfectly on a 32x24 pixel region
-	pivot_offset = Vector2(16, 12)
+	# Use deferred sizing so the center point is accurate
+	_set_pivot_center.call_deferred()
 	
-	# Fetch the normal texture using self referencing to force context evaluation
-	var base_texture = self.texture_normal
-	
-	if base_texture:
+	# Handles your spritesheet cutting inside the regular icon slot
+	if icon:
 		atlas_tex = AtlasTexture.new()
-		atlas_tex.atlas = base_texture
-		self.texture_normal = atlas_tex
+		atlas_tex.atlas = icon
+		icon = atlas_tex
 		_update_sprite_frame()
 	
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
 	pressed.connect(_on_pressed)
+
+func _set_pivot_center() -> void:
+	pivot_offset = size / 2.0
 
 func _process(delta: float) -> void:
 	var target_glow = 1.0 if is_hovered() else 0.0
@@ -46,7 +47,8 @@ func _on_pressed() -> void:
 	var total_frames = h_frames * v_frames
 	
 	if total_frames > 1 and atlas_tex:
-		current_frame = (current_frame + 1) % total_frames
+		# Change icon frame to the pressed look
+		current_frame = 1
 		_update_sprite_frame()
 	
 	await get_tree().create_timer(0.15).timeout

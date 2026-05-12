@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://deu1o2lpat4pu" path="res://control.gd" id="2_epypp"]
 [ext_resource type="Script" uid="uid://ca684ahifoo73" path="res://button.gd" id="3_0hol4"]
 [ext_resource type="Texture2D" uid="uid://cn3b2ebomh71f" path="res://button.png" id="3_epypp"]
+[ext_resource type="Script" uid="uid://bsmrx42itcgq3" path="res://grid_ig.gd" id="5_kdubu"]
+[ext_resource type="Texture2D" uid="uid://ibsw8y8yw4xv" path="res://Sprite-0002.png" id="5_q6r6c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wtcfe"]
 texture = ExtResource("1_wtcfe")
@@ -75,10 +77,6 @@ texture = ExtResource("1_wtcfe")
 [sub_resource type="TileSet" id="TileSet_0e48y"]
 sources/0 = SubResource("TileSetAtlasSource_wtcfe")
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_epypp"]
-resource_local_to_scene = true
-load_path = "res://.godot/imported/button.png-234620e182281afdeb4aab4d2ed4f8a7.ctex"
-
 [node name="Node2D" type="Node2D" unique_id=2123024321]
 position = Vector2(156, 125)
 
@@ -95,16 +93,90 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_epypp")
 
-[node name="Button" type="TextureButton" parent="." unique_id=454109207]
-offset_left = -74.0
-offset_top = -90.0
-offset_right = 97.0
-offset_bottom = 70.0
-texture_normal = ExtResource("3_epypp")
+[node name="GridIG" type="Node2D" parent="." unique_id=1363456962]
+script = ExtResource("5_kdubu")
+
+[node name="Sprite2D" type="Sprite2D" parent="GridIG" unique_id=823083812]
+position = Vector2(701.00006, 188)
+scale = Vector2(3.46875, 3.489011)
+texture = ExtResource("5_q6r6c")
+
+[node name="Button" type="Button" parent="GridIG" unique_id=1581146771]
+offset_left = 557.0
+offset_top = 54.0
+offset_right = 565.0
+offset_bottom = 62.0
+scale = Vector2(9.585753, 9.7417)
+
+[node name="Button2" type="Button" parent="GridIG" unique_id=1719522664]
+offset_left = 660.0
+offset_top = 54.000004
+offset_right = 668.0
+offset_bottom = 62.000004
+scale = Vector2(10.730243, 10.13975)
+
+[node name="Button3" type="Button" parent="GridIG" unique_id=1315135044]
+offset_left = 561.0
+offset_top = 152.0
+offset_right = 569.0
+offset_bottom = 160.0
+scale = Vector2(9.205481, 8.898983)
+
+[node name="Button4" type="Button" parent="GridIG" unique_id=481169539]
+offset_left = 761.0
+offset_top = 49.0
+offset_right = 769.0
+offset_bottom = 57.0
+scale = Vector2(9.748489, 10.238649)
+
+[node name="Button5" type="Button" parent="GridIG" unique_id=2083216965]
+offset_left = 661.0
+offset_top = 145.0
+offset_right = 669.0
+offset_bottom = 153.0
+scale = Vector2(9.748489, 10.238649)
+
+[node name="Button6" type="Button" parent="GridIG" unique_id=1047817259]
+offset_left = 762.0
+offset_top = 148.0
+offset_right = 770.0
+offset_bottom = 156.0
+scale = Vector2(9.748489, 10.238649)
+
+[node name="Button7" type="Button" parent="GridIG" unique_id=1458992143]
+offset_left = 556.0
+offset_top = 246.0
+offset_right = 564.0
+offset_bottom = 254.0
+scale = Vector2(9.748489, 10.238649)
+
+[node name="Button8" type="Button" parent="GridIG" unique_id=1133003379]
+offset_left = 657.0
+offset_top = 245.0
+offset_right = 665.0
+offset_bottom = 253.0
+scale = Vector2(9.748489, 10.238649)
+
+[node name="Button9" type="Button" parent="GridIG" unique_id=503696754]
+offset_left = 766.0
+offset_top = 244.0
+offset_right = 774.0
+offset_bottom = 252.0
+scale = Vector2(9.748489, 10.238649)
+
+[node name="Button" type="Button" parent="." unique_id=1726718559]
+visible = false
+offset_left = 206.0
+offset_top = 114.999985
+offset_right = 214.0
+offset_bottom = 122.999985
+scale = Vector2(18.588762, 17.049572)
+flat = true
 script = ExtResource("3_0hol4")
 
-[node name="Sprite2D" type="Sprite2D" parent="Button" unique_id=601560430]
-position = Vector2(78, 77.000015)
-scale = Vector2(7, 9)
-texture = SubResource("CompressedTexture2D_epypp")
-region_rect = Rect2(0, 0, 29, 24)
+[node name="Sprite2D" type="Sprite2D" parent="Button" unique_id=484414518]
+position = Vector2(3.9049811, 3.3181314)
+scale = Vector2(0.2677133, 0.47368163)
+texture = ExtResource("3_epypp")
+region_enabled = true
+region_rect = Rect2(0, 0, 29.893684, 24)

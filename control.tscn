@@ -46,6 +46,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.9967182, 0.97697455)
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1972460355]
 material = SubResource("ShaderMaterial_qtu10")
